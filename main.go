@@ -24,6 +24,8 @@ func main() {
 		redisURL = defaultRedisURL
 	}
 
+	log.Println("redis url:", redisURL)
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = defaultPort
@@ -41,6 +43,9 @@ func main() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/counter", handleCount)
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "Hello World!")
+	})
 
 	log.Println("Listening on :4000...")
 	http.ListenAndServe(":4000", mux)
