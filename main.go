@@ -47,8 +47,8 @@ func main() {
 		fmt.Fprintf(w, "Hello World!")
 	})
 
-	log.Println("Listening on :4000...")
-	http.ListenAndServe(":4000", mux)
+	log.Println("Listening on :" + port + "")
+	http.ListenAndServe(fmt.Sprintf(":%s", port), mux)
 }
 
 func handleCount(w http.ResponseWriter, r *http.Request) {
